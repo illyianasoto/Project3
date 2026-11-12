@@ -60,3 +60,138 @@ img, video{
   background-color: var(--alternate-background);
   color: var(--alternate-text);
 }
+/* Mobile layout */
+header,
+main,
+footer {
+  padding: var(--space-4);
+}
+
+main > * {
+  min-width: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+img,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.landmarks-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--grid-gap);
+}
+
+.introduction,
+.intro-video,
+.featured-landmark,
+.landmarks {
+  padding: var(--content-padding);
+}
+
+.landmark-intro,
+.landmark-hero,
+.landmark-about,
+.landmark-directions,
+.landmark-info,
+.landmark-gallery {
+  margin: 0 0 var(--space-8);
+  padding: var(--content-padding);
+}
+
+.landmark-directions,
+.landmark-info {
+  color: var(--alternate-text);
+  background-color: var(--alternate-background);
+}
+
+.landmark-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--grid-gap);
+}
+
+.landmark-gallery img {
+  width: 100%;
+}
+
+figcaption {
+  margin-top: var(--space-2);
+  font-size: var(--text-size-sm);
+}
+
+#pagination {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--content-padding);
+}
+
+#pagination .btn {
+  display: inline-block;
+  padding: var(--space-3) var(--space-4);
+  color: var(--button-text);
+  background-color: var(--action);
+  text-decoration: none;
+}
+
+#pagination .btn:hover {
+  background-color: var(--action-hover);
+}
+
+/* Two columns when there is more room */
+@media (min-width: 600px) {
+  header,
+  main,
+  footer {
+    padding: var(--space-8);
+  }
+
+  .landmarks-grid,
+  .landmark-gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Wider screen layouts */
+@media (min-width: 900px) {
+  .landmarks-grid,
+  .landmark-gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  /* Only the Wonder Wheel page gets this main grid */
+  main:has(> .landmark-intro) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-8);
+    align-items: start;
+  }
+
+  .landmark-intro,
+  .landmark-hero,
+  .landmark-gallery,
+  #pagination {
+    grid-column: 1 / -1;
+  }
+
+  .landmark-about {
+    grid-column: 1;
+    grid-row: span 2;
+  }
+
+  .landmark-directions,
+  .landmark-info {
+    grid-column: 2;
+  }
+
+  main > section[class^="landmark-"] {
+    margin: 0;
+  }
+}
